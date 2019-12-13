@@ -3,17 +3,22 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "jsx": "preserve",
     "declaration": true,
     "declarationDir": "types",
+    "jsx": "preserve",
     "module": "ESNext",
     "moduleResolution": "node",
-    "target": "ES2019",
     "noImplicitAny": true,
+    "paths": {
+      "*": [
+        "*",
+        "src/*",
+        "test/*"
+      ]
+    },
     "removeComments": true,
     "sourceMap": false,
-    "strict": true,
-    "outFile": "index.js"
+    "target": "ES2019"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "tests/**/*"]
