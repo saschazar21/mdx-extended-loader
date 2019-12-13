@@ -10,14 +10,11 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "paths": {
-      "*": [
-        "*",
-        "src/*",
-        "test/*"
-      ]
+      "*": ["*", "src/*", "test/*"]
     },
     "removeComments": true,
     "sourceMap": false,
+    "strict": true,
     "target": "ES2019"
   },
   "include": ["src/**/*"],
