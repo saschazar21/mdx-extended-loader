@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "jsx": "preserve",
+    "declaration": true,
+    "declarationDir": "types",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ES2019",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "sourceMap": false,
+    "strict": true,
+    "outFile": "index.js"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "tests/**/*"]
+}

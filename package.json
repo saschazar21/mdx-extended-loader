@@ -1,0 +1,31 @@
+{
+  "name": "@saschazar/mdx-layout-loader",
+  "version": "0.0.0-semantic-release",
+  "description": "Easily wrap React components around your MDX files",
+  "main": "index.min.js",
+  "repository": "https://github.com/saschazar21/mdx-layout-loader",
+  "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com> (https://sascha.work)",
+  "license": "MIT",
+  "private": false,
+  "types": "types/index.d.ts",
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "builtin-modules": "^3.1.0",
+    "eslint": "^6.7.2",
+    "rollup": "^1.27.12",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.3",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "globby": "^10.0.1",
+    "gray-matter": "^4.0.2"
+  }
+}
