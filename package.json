@@ -13,6 +13,7 @@
   },
   "scripts": {
     "lint": "eslint src/**/*.ts",
+    "test": "jest --coverage",
     "build": "rollup -c rollup.config.js"
   },
   "devDependencies": {

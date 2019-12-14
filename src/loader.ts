@@ -21,10 +21,7 @@ function wrapContent(matter: any, content: string, layoutPath: string): string {
   return `
 import Layout from './${layoutPath}';
 
-export default React.createElement(
-  Layout,
-  ${JSON.stringify(props)},
-);
+export default () => Layout(${JSON.stringify(props)});
 
 ${content}
   `;
@@ -38,7 +35,7 @@ ${content}
  */
 async function globLayouts(
   this: loader.LoaderContext,
-  options: MDXLayoutLoaderOptions
+  options: MDXLayoutLoaderOptions,
 ): Promise<Map<string, string>> {
   const { extensions, layoutsDir } = options;
   const fileExtensions = Array.isArray(extensions) ? extensions : [extensions];
@@ -46,14 +43,14 @@ async function globLayouts(
   const relativeLayoutsPath = relative(process.cwd(), absoluteLayoutsPath); // the relative path from the CWD to the layoutsDir
   const relativeResourcePath = relative(
     dirname(this.resourcePath), // dirname() is necessary to cut off the filename from the path
-    absoluteLayoutsPath
+    absoluteLayoutsPath,
   ); // the relative path from the source file to the layoutsDir
   const results = new Map();
 
   try {
     // glob the relative layout path for files having one of the given extensions
     const layouts = await globby(relativeLayoutsPath, {
-      expandDirectories: fileExtensions.map(extension => `*.${extension}`)
+      expandDirectories: fileExtensions.map((extension) => `*.${extension}`),
     });
 
     // when no layouts found, throw error
@@ -86,7 +83,7 @@ async function globLayouts(
 export default async function MDXLayoutLoader(
   this: loader.LoaderContext,
   content: string,
-  map?: any
+  map?: any,
 ): Promise<void> {
   const callback = this.async() as loader.loaderCallback;
   const options = loaderUtils.getOptions(this) as MDXLayoutLoaderOptions;
@@ -111,8 +108,8 @@ export default async function MDXLayoutLoader(
       new Error(
         `${
           data.layout ? `Layout '${data.layout}'` : 'Default layout'
-        } not found!`
-      )
+        } not found!`,
+      ),
     );
   }
 
