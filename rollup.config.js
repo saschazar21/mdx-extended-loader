@@ -5,12 +5,21 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
-const external = [...builtinModules, 'globby', 'gray-matter', 'loader-utils'];
+const external = [
+  ...builtinModules,
+  'capital-case',
+  'globby',
+  'gray-matter',
+  'loader-utils',
+  'param-case',
+];
 
 const globals = {
+  'capital-case': 'capitalCase',
   globby: 'globby',
   'gray-matter': 'matter',
-  webpack: 'webpack'
+  'param-case': 'paramCase',
+  webpack: 'webpack',
 };
 
 const config = {
@@ -26,7 +35,7 @@ const config = {
       useTsconfigDeclarationDir: true,
     }),
     babel({ extensions: ['.ts'] }),
-  ]
+  ],
 };
 
 export default [
@@ -36,9 +45,9 @@ export default [
       {
         file: 'index.js',
         format: 'cjs',
-        globals
-      }
-    ]
+        globals,
+      },
+    ],
   },
   {
     ...config,
@@ -47,8 +56,8 @@ export default [
       {
         file: 'index.min.js',
         format: 'cjs',
-        globals
-      }
-    ]
-  }
+        globals,
+      },
+    ],
+  },
 ];

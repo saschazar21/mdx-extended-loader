@@ -1,5 +1,5 @@
 import globby from 'globby';
-import { basename, dirname, extname, relative, resolve } from 'path';
+import { basename, extname, relative, resolve } from 'path';
 import { loader } from 'webpack';
 
 import MDXLayoutLoaderOptions from 'interfaces/options';
@@ -19,7 +19,7 @@ export default async function globLayouts(
   const absoluteLayoutsPath = resolve(process.cwd(), layoutsDir); // the absolute path to the layoutsDir
   const relativeLayoutsPath = relative(process.cwd(), absoluteLayoutsPath); // the relative path from the CWD to the layoutsDir
   const relativeResourcePath = relative(
-    dirname(this.resourcePath), // dirname() is necessary to cut off the filename from the path
+    this.context, // dirname() is necessary to cut off the filename from the path
     absoluteLayoutsPath,
   ); // the relative path from the source file to the layoutsDir
   const results = new Map();
