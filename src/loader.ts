@@ -1,12 +1,12 @@
-import { getOptions, interpolateName } from 'loader-utils';
-import matter from 'gray-matter';
-import { relative } from 'path';
-import { loader } from 'webpack';
+import { getOptions, interpolateName } from "loader-utils";
+import matter from "gray-matter";
+import { relative } from "path";
+import { loader } from "webpack";
 
-import MDXLayoutLoaderOptions from 'interfaces/options';
-import isDebug from 'helpers/isDebug';
-import globLayouts from 'globLayouts';
-import parseFilename, { ParsedData } from 'parseFilename';
+import MDXLayoutLoaderOptions from "interfaces/options";
+import isDebug from "helpers/isDebug";
+import globLayouts from "globLayouts";
+import parseFilename, { ParsedData } from "parseFilename";
 
 /**
  * Wraps the content in a React component layout, together with the Frontmatter data as props.
@@ -22,8 +22,9 @@ function wrapContent(matter: any, content: string, layoutPath: string): string {
 
   return `
 import Layout from './${layoutPath}';
-export const meta = ${JSON.stringify(props)};
-export default Layout;
+export default ({ children }) => Layout(Object.assign({}, ${JSON.stringify(
+    props
+  )}, { children }));
 
 ${content}
   `;
@@ -38,7 +39,7 @@ ${content}
 export default async function MDXLayoutLoader(
   this: loader.LoaderContext,
   content: string,
-  map?: any,
+  map?: any
 ): Promise<void> {
   const debug = isDebug.call(this);
   const callback = this.async() as loader.loaderCallback;
@@ -60,11 +61,11 @@ export default async function MDXLayoutLoader(
 
       if (debug) {
         console.log(
-          'Parsed',
+          "Parsed",
           this.resourcePath,
-          'to',
+          "to",
           p.date.toISOString(),
-          p.__url,
+          p.__url
         );
       }
     } catch (e) {
@@ -78,7 +79,7 @@ export default async function MDXLayoutLoader(
   }
 
   // otherwise try to fetch information for the desired layout in the glob results
-  const layoutPath = layouts.get(frontmatter.layout || 'index');
+  const layoutPath = layouts.get(frontmatter.layout || "index");
 
   if (!layoutPath) {
     return callback(
@@ -86,18 +87,18 @@ export default async function MDXLayoutLoader(
         `${
           frontmatter.layout
             ? `Layout '${frontmatter.layout}'`
-            : 'Default layout'
-        } not found!`,
-      ),
+            : "Default layout"
+        } not found!`
+      )
     );
   }
 
   if (debug) {
     console.log(
-      'Using layout',
+      "Using layout",
       layoutPath,
-      'for',
-      relative(process.cwd(), this.resourcePath),
+      "for",
+      relative(process.cwd(), this.resourcePath)
     );
   }
 

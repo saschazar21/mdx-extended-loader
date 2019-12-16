@@ -1,4 +1,4 @@
-import { loader } from 'webpack';
+import { loader } from "webpack";
 
 const regex = /mdx-layout-loader/;
 
@@ -7,7 +7,7 @@ const regex = /mdx-layout-loader/;
  *
  * @param this - The webpack loader context
  */
-export default function isDebug(this: loader.LoaderContext) {
-  const isDebug = process.env.DEBUG && regex.test(process.env.DEBUG);
+export default function isDebug(this: loader.LoaderContext): boolean {
+  const isDebug = !!(process.env.DEBUG && regex.test(process.env.DEBUG));
   return isDebug;
 }
