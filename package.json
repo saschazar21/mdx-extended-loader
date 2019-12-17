@@ -1,9 +1,9 @@
 {
-  "name": "@saschazar/mdx-layout-loader",
+  "name": "@saschazar/mdx-enhanced-loader",
   "version": "0.0.0-semantic-release",
   "description": "Easily wrap React components around your MDX files",
   "main": "index.min.js",
-  "repository": "https://github.com/saschazar21/mdx-layout-loader",
+  "repository": "https://github.com/saschazar21/mdx-enhanced-loader",
   "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com> (https://sascha.work)",
   "license": "MIT",
   "private": false,

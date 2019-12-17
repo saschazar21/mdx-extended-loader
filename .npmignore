@@ -1,0 +1,12 @@
+!index.js
+!index.min.js
+
+coverage/
+src/
+test/
+.babelrc
+.eslintrc
+*.config.js
+global.d.ts
+tsconfig.json
+yarn.lock

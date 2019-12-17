@@ -1,4 +1,4 @@
-# 📦 MDX layout loader
+# 📦 MDX enhanced loader
 
 > Easily wrap React components around your MDX files
 
