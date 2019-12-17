@@ -113,7 +113,11 @@ export default async function MDXLayoutLoader(
 
   try {
     // render and compile the content
-    const renderedContent = await render.call(this, wrappedContent, options);
+    const renderedContent = await render.call(
+      this,
+      wrappedContent,
+      Object.assign({}, parsed.__url && { filepath: parsed.__url }, options)
+    );
 
     return callback(null, renderedContent, map);
   } catch (e) {
