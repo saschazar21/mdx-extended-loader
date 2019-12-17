@@ -16,16 +16,11 @@ import render from 'render';
  * @param content - the string representation of the Markdown content (without frontmatter)
  * @param layoutPath - the file path to the layout file, relative to the source file
  */
-function wrapContent(matter: any, content: string, layoutPath: string): string {
-  // exclude any children data from the frontmatter, to not confuse the React component
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { children, ...props } = matter;
-
+function wrapContent(props: any, content: string, layoutPath: string): string {
   return `
 import Layout from './${layoutPath}';
-export default ({ children }) => Layout(Object.assign({}, ${JSON.stringify(
-    props
-  )}, { children }));
+const props = ${JSON.stringify(props)};
+export default ({ children }) => Layout(Object.assign({}, props, { children }));
 
 ${content}
   `;
