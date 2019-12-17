@@ -29,7 +29,6 @@ export default async (
                 cacheDirectory: true
               }
             },
-            '@mdx-js/loader',
             {
               loader: resolve(__dirname, '../src/loader.ts'),
               options

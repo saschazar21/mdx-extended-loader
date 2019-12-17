@@ -17,6 +17,6 @@
     "strict": true,
     "target": "ES2019"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "global.d.ts"],
   "exclude": ["node_modules", "tests/**/*"]
 }

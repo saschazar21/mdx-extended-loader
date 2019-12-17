@@ -1,11 +1,13 @@
 import MDXLayoutLoaderOptions from '../src/interfaces/options';
 import compiler from './loader';
 
+const options: MDXLayoutLoaderOptions = {
+  extensions: ['tsx', 'ts'],
+  layoutsDir: 'test/layouts'
+};
+
 describe('MDX Layout Loader', () => {
-  const options: MDXLayoutLoaderOptions = {
-    extensions: ['tsx', 'ts'],
-    layoutsDir: 'test/layouts'
-  };
+  beforeAll(() => jest.setTimeout(15000));
 
   it('wraps using simple settings', async () => {
     const regex = /DEFAULT_TEMPLATE_MARKER/;

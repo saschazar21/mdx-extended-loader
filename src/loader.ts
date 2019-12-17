@@ -1,12 +1,13 @@
-import { getOptions, interpolateName } from "loader-utils";
-import matter from "gray-matter";
-import { relative } from "path";
-import { loader } from "webpack";
+import { getOptions, interpolateName } from 'loader-utils';
+import matter from 'gray-matter';
+import { relative } from 'path';
+import { loader } from 'webpack';
 
-import MDXLayoutLoaderOptions from "interfaces/options";
-import isDebug from "helpers/isDebug";
-import globLayouts from "globLayouts";
-import parseFilename, { ParsedData } from "parseFilename";
+import MDXLayoutLoaderOptions from 'interfaces/options';
+import isDebug from 'helpers/isDebug';
+import globLayouts from 'globLayouts';
+import parseFilename, { ParsedData } from 'parseFilename';
+import render from 'render';
 
 /**
  * Wraps the content in a React component layout, together with the Frontmatter data as props.
@@ -61,9 +62,9 @@ export default async function MDXLayoutLoader(
 
       if (debug) {
         console.log(
-          "Parsed",
+          'Parsed',
           this.resourcePath,
-          "to",
+          'to',
           p.date.toISOString(),
           p.__url
         );
@@ -79,7 +80,7 @@ export default async function MDXLayoutLoader(
   }
 
   // otherwise try to fetch information for the desired layout in the glob results
-  const layoutPath = layouts.get(frontmatter.layout || "index");
+  const layoutPath = layouts.get(frontmatter.layout || 'index');
 
   if (!layoutPath) {
     return callback(
@@ -87,7 +88,7 @@ export default async function MDXLayoutLoader(
         `${
           frontmatter.layout
             ? `Layout '${frontmatter.layout}'`
-            : "Default layout"
+            : 'Default layout'
         } not found!`
       )
     );
@@ -95,9 +96,9 @@ export default async function MDXLayoutLoader(
 
   if (debug) {
     console.log(
-      "Using layout",
+      'Using layout',
       layoutPath,
-      "for",
+      'for',
       relative(process.cwd(), this.resourcePath)
     );
   }
@@ -110,5 +111,12 @@ export default async function MDXLayoutLoader(
   const wrappedContent = wrapContent(props, markdown, layoutPath);
   debug && console.log(wrappedContent);
 
-  return callback(null, wrappedContent, map);
+  try {
+    // render and compile the content
+    const renderedContent = await render.call(this, wrappedContent, options);
+
+    return callback(null, renderedContent, map);
+  } catch (e) {
+    return callback(e);
+  }
 }

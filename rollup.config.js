@@ -7,19 +7,21 @@ import typescript from 'rollup-plugin-typescript2';
 
 const external = [
   ...builtinModules,
+  '@mdx-js/mdx',
   'capital-case',
   'globby',
   'gray-matter',
   'loader-utils',
-  'param-case',
+  'param-case'
 ];
 
 const globals = {
+  '@mdx-js/mdx': 'mdx',
   'capital-case': 'capitalCase',
   globby: 'globby',
   'gray-matter': 'matter',
   'param-case': 'paramCase',
-  webpack: 'webpack',
+  webpack: 'webpack'
 };
 
 const config = {
@@ -29,13 +31,13 @@ const config = {
     nodeResolve(),
     commonjs({
       exclude: /node_modules/,
-      sourceMap: false,
+      sourceMap: false
     }),
     typescript({
-      useTsconfigDeclarationDir: true,
+      useTsconfigDeclarationDir: true
     }),
-    babel({ extensions: ['.ts'] }),
-  ],
+    babel({ extensions: ['.ts'] })
+  ]
 };
 
 export default [
@@ -45,9 +47,9 @@ export default [
       {
         file: 'index.js',
         format: 'cjs',
-        globals,
-      },
-    ],
+        globals
+      }
+    ]
   },
   {
     ...config,
@@ -56,8 +58,8 @@ export default [
       {
         file: 'index.min.js',
         format: 'cjs',
-        globals,
-      },
-    ],
-  },
+        globals
+      }
+    ]
+  }
 ];
