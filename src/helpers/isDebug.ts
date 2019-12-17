@@ -1,4 +1,4 @@
-import { loader } from "webpack";
+import { loader } from 'webpack';
 
 const regex = /mdx-layout-loader/;
 

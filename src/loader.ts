@@ -1,6 +1,6 @@
 import { getOptions, interpolateName } from 'loader-utils';
 import matter from 'gray-matter';
-import { relative } from 'path';
+import { extname, relative } from 'path';
 import { loader } from 'webpack';
 
 import MDXLayoutLoaderOptions from 'interfaces/options';
@@ -112,11 +112,14 @@ export default async function MDXLayoutLoader(
   debug && console.log(wrappedContent);
 
   try {
+    const filepath =
+      parsed.__url && `${parsed.__url}${extname(this.resourcePath)}`;
+
     // render and compile the content
     const renderedContent = await render.call(
       this,
       wrappedContent,
-      Object.assign({}, parsed.__url && { filepath: parsed.__url }, options)
+      Object.assign({}, filepath && { filepath }, options)
     );
 
     return callback(null, renderedContent, map);
