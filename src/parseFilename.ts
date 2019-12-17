@@ -1,7 +1,6 @@
-import { capitalCase } from "capital-case";
-import { paramCase } from "param-case";
-import { basename, dirname, extname, join, relative } from "path";
-import { loader } from "webpack";
+import { capitalCase } from 'capital-case';
+import { basename, dirname, extname, join, relative } from 'path';
+import { loader } from 'webpack';
 
 export const dateRegExp = /^([0-9]{4}-[0-9]{1,2}-[0-9]{1,2})[-_+]?(.*)/i;
 
@@ -25,7 +24,7 @@ export default function parseFilename(this: loader.LoaderContext): ParsedData {
   // Throw an error, when either date or title could not have been parsed
   if (!parts || !parts[1] || !parts[2]) {
     throw new Error(
-      "Could not parse date timestamp and/or title!\nFile will be stored under original filename!"
+      'Could not parse date timestamp and/or title!\nFile will be stored under original filename!'
     );
   }
 
@@ -37,11 +36,8 @@ export default function parseFilename(this: loader.LoaderContext): ParsedData {
   }
 
   return {
-    __filename: paramCase(parts[2]),
-    __url: relative(
-      process.cwd(),
-      join(dirname(this.resourcePath), paramCase(parts[2]))
-    ),
+    __filename: parts[2],
+    __url: relative(process.cwd(), join(dirname(this.resourcePath), parts[2])),
     date: new Date(date),
     title: capitalCase(parts[2])
   };

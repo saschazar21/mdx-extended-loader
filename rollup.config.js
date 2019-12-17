@@ -11,8 +11,7 @@ const external = [
   'capital-case',
   'globby',
   'gray-matter',
-  'loader-utils',
-  'param-case'
+  'loader-utils'
 ];
 
 const globals = {
@@ -20,7 +19,6 @@ const globals = {
   'capital-case': 'capitalCase',
   globby: 'globby',
   'gray-matter': 'matter',
-  'param-case': 'paramCase',
   webpack: 'webpack'
 };
 
