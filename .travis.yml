@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - lts/dubnium
+
+jobs:
+  include:
+    - stage: test
+      name: 'Testing and linting'
+      script:
+        - yarn lint
+        - yarn test
+    - stage: build
+      name: 'Building and deploying to NPM'
+      script: yarn build
+      deploy:
+        - provider: npm
+          edge: true
+          email: $NPM_EMAIL
+          api_token: $NPM_API_TOKEN
+          dry_run: true
+          on:
+            branch: master
+        - provider: script
+          edge: true
+          script: npx semantic-release
+          on:
+            branch: release

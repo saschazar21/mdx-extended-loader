@@ -6,6 +6,7 @@ src/
 test/
 .babelrc
 .eslintrc
+.travis.yml
 *.config.js
 global.d.ts
 tsconfig.json
