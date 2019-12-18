@@ -2,7 +2,7 @@ import { OptionObject } from 'loader-utils';
 
 import MDXOptions from 'interfaces/mdxOptions';
 
-export default interface MDXLayoutLoaderOptions
+export default interface MDXExtendedLoaderOptions
   extends OptionObject,
     MDXOptions {
   /** supported file suffixes for layout files */

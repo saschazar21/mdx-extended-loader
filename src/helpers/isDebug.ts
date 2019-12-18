@@ -1,6 +1,6 @@
 import { loader } from 'webpack';
 
-const regex = /mdx-layout-loader/;
+const regex = /mdx-extended-loader/;
 
 /**
  * Determines, if the DEBUG env is set and contains 'mdx-layout-loader' (e.g. whether to print debug messages)

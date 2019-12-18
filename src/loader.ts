@@ -1,4 +1,4 @@
-import { getOptions, interpolateName } from 'loader-utils';
+import { getOptions } from 'loader-utils';
 import matter from 'gray-matter';
 import { extname, relative } from 'path';
 import { loader } from 'webpack';
@@ -32,7 +32,7 @@ ${content}
  * @param content - The string representation of the source file's content
  * @param map - The SourceMap of the webpack LoaderContext
  */
-export default async function MDXLayoutLoader(
+export default async function MDXExtendedLoader(
   this: loader.LoaderContext,
   content: string,
   map?: any

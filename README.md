@@ -1,8 +1,8 @@
-# 📦 MDX enhanced loader
+# 📦 MDX extended loader
 
 > Easily wrap React components around your MDX files
 
-A [Webpack](https://webpack.js.org/) loader for mutating your [MDX](https://mdxjs.com/) files to export a wrapping React component by default.
+A [Webpack](https://webpack.js.org/) loader for mutating your [MDX](https://mdxjs.com/) files to export a wrapping React component by default. Easy to extend as well.
 
 Best used in combination with [@mdx-js/loader](https://github.com/mdx-js/mdx).
 

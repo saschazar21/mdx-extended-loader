@@ -2,7 +2,7 @@ import globby from 'globby';
 import { basename, extname, relative, resolve } from 'path';
 import { loader } from 'webpack';
 
-import MDXLayoutLoaderOptions from 'interfaces/options';
+import MDXExtendedLoaderOptions from 'interfaces/options';
 
 /**
  * Filters the given layoutsDir-directory for possible React component layouts and returns a Map.
@@ -12,7 +12,7 @@ import MDXLayoutLoaderOptions from 'interfaces/options';
  */
 export default async function globLayouts(
   this: loader.LoaderContext,
-  options: MDXLayoutLoaderOptions,
+  options: MDXExtendedLoaderOptions
 ): Promise<Map<string, string>> {
   const { extensions, layoutsDir } = options;
   const fileExtensions = Array.isArray(extensions) ? extensions : [extensions];
@@ -20,14 +20,14 @@ export default async function globLayouts(
   const relativeLayoutsPath = relative(process.cwd(), absoluteLayoutsPath); // the relative path from the CWD to the layoutsDir
   const relativeResourcePath = relative(
     this.context, // dirname() is necessary to cut off the filename from the path
-    absoluteLayoutsPath,
+    absoluteLayoutsPath
   ); // the relative path from the source file to the layoutsDir
   const results = new Map();
 
   try {
     // glob the relative layout path for files having one of the given extensions
     const layouts = await globby(relativeLayoutsPath, {
-      expandDirectories: fileExtensions.map(extension => `*.${extension}`),
+      expandDirectories: fileExtensions.map(extension => `*.${extension}`)
     });
 
     // when no layouts found, throw error
