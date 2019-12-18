@@ -3,6 +3,7 @@ import builtinModules from 'builtin-modules';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
+import transformPaths from '@zerollup/ts-transform-paths';
 import typescript from 'rollup-plugin-typescript2';
 
 const external = [
@@ -32,7 +33,9 @@ const config = {
       sourceMap: false
     }),
     typescript({
-      useTsconfigDeclarationDir: true
+      useTsconfigDeclarationDir: true,
+      cacheRoot: '.cache',
+      transformers: [service => transformPaths(service.getProgram())]
     }),
     babel({ extensions: ['.ts'] })
   ]

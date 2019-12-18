@@ -1,6 +1,7 @@
 !index.js
 !index.min.js
 
+.cache/
 coverage/
 src/
 test/
