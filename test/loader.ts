@@ -1,4 +1,4 @@
-import webpack, { OutputFileSystem } from 'webpack';
+import webpack from 'webpack';
 import MemoryFs from 'memory-fs';
 import { resolve } from 'path';
 
