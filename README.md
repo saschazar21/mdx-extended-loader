@@ -18,23 +18,39 @@ or
 
 ## How it works
 
+It works just as any other Webpack loader, although it is mainly targeted towards transpiling `mdx` and `md` files.
+
+### Initial situation
+
 Given the following project tree, where all the `mdx` files should be wrapped in a layout from the `layouts` directory:
 
 ```
 MyApp
 |
 ├─ pages
-|  ├ index.tsx
+|  ├ index.jsx
 |  ├ about.mdx
 |  ├─ blog
 |     ├ 2019-12-19_first-blog-post.mdx
 |
 ├─ layouts
-   ├ index.tsx
-   ├ custom.tsx
+   ├ index.jsx
+   ├ custom.jsx
 ```
 
-It works just as any other Webpack loader, although it is mainly targeted towards transpiling `mdx` and `md` files.
+### Goal
+
+With two files in the `layouts` directory, Webpack should look for `mdx` files in the project tree and wrap the most suitable layout around each of them.
+
+The file in the `pages/blog` directory includes a date string in its filename, so this information should be parsed as well.
+
+### Enter Webpack
+
+To achieve the goal, Webpack should do the following:
+
+1. parse information from the filename (_date_ and _title_)
+1. mix the data with possibly included frontmatter (e.g. _layout_, etc...)
+1. select a layout and wrap it around its contents
 
 Basically, a simple webpack rule for this use case might look like the following:
 
@@ -67,9 +83,35 @@ Basically, a simple webpack rule for this use case might look like the following
 }
 ```
 
-### Options
+## Options
 
-_Work in progress_
+In order to customize the Webpack flow, the following options may be applied to the configuration.
+
+In addition to the options below, the `options` object may be extended with the options of the [@mdx-js/mdx](https://github.com/mdx-js/mdx) module.
+
+### `extensions`
+
+> `array` | mandatory | example: `['jsx', 'js']`
+
+The file extensions of possible layouts to look for in the `layoutsDir` directory
+
+### `layouts`
+
+> `string` | mandatory | example: `layouts`
+
+The relative path to the layouts directory in the project's working directory
+
+### `parseFilename`
+
+> `boolean` | optional | default: `true`
+
+Whether to attempt to parse the `mdx` filename for `date` and `title`
+
+### `useDefault`
+
+> `boolean` | optional | default: `true`
+
+Whether to use the `index` file in the layouts directory as fallback, when no `layout` key was given in the frontmatter
 
 ## License
 
