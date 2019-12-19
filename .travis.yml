@@ -14,14 +14,13 @@ jobs:
       script: yarn build
       deploy:
         - provider: npm
+          if: branch != master
           edge: true
           email: $NPM_EMAIL
-          api_token: $NPM_API_TOKEN
+          api_token: $NPM_TOKEN
           dry_run: true
-          on:
-            branch: master
         - provider: script
           edge: true
           script: npx semantic-release
           on:
-            branch: release
+            branch: master
