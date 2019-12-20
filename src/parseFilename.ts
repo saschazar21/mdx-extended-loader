@@ -27,7 +27,7 @@ export function parseDateAndTitle(
     );
   }
 
-  return { date: results[1], title: results[2] };
+  return { date: results[1], title: basename(results[2], extname(results[2])) };
 }
 
 /**
