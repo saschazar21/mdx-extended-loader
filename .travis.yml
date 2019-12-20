@@ -9,9 +9,6 @@ jobs:
       script:
         - yarn lint
         - yarn test
-    - stage: coverage
-      name: 'Code coverage by codecov.io'
-      script:
         - bash <(curl -s https://codecov.io/bash) -Z
     - stage: build
       name: 'Building and deploying to NPM'
