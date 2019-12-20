@@ -72,7 +72,9 @@ Basically, a simple webpack rule for this use case might look like the following
               loader: '@saschazar/mdx-extended-loader',
               options: {
                 extensions: ['jsx', 'js'], // the file suffixes the layouts
-                layoutsDir: 'layouts' // relative to process.cwd()
+                layoutsDir: 'layouts', // relative to process.cwd()
+                rehypePlugins: [], // @mdx-js/mdx option
+                remarkPlugins: [] // @mdx-js/mdx option
               }
             }
           ]
@@ -112,6 +114,14 @@ Whether to attempt to parse the `mdx` filename for `date` and `title`
 > `boolean` | optional | default: `true`
 
 Whether to use the `index` file in the layouts directory as fallback, when no `layout` key was given in the frontmatter
+
+## Credits
+
+Without [next-mdx-enhanced](https://github.com/hashicorp/next-mdx-enhanced), none of this would have happened, or at least in a very different way.
+
+The main reason why I started this project however, was the fact, that I found `next-mdx-enhanced` a little too opinionated and first and foremost too tightly coupled to [Next.js](https://nextjs.org).
+
+So I decided to split it into a Webpack-only loader, together with a filename parsing option. Voilà.
 
 ## License
 
