@@ -7,6 +7,9 @@
   "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com> (https://sascha.work)",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "types": "types/index.d.ts",
   "engines": {
     "node": ">=8"
