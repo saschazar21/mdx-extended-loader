@@ -7,6 +7,7 @@ src/
 test/
 .babelrc
 .eslintrc
+.releaserc
 .travis.yml
 *.config.js
 global.d.ts
