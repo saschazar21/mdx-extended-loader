@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/saschazar21/mdx-extended-loader.svg?branch=master)](https://travis-ci.org/saschazar21/mdx-extended-loader) [![npm version](https://badge.fury.io/js/%40saschazar%2Fmdx-extended-loader.png)](https://badge.fury.io/js/%40saschazar%2Fmdx-extended-loader)
+
 # 📦 MDX extended loader
 
 > Easily wrap React components around your MDX files
