@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.1...v1.0.2) (2019-12-21)
+
+
+### Bug Fixes
+
+* **parser:** excluded parser into own file ([84f226f](https://github.com/saschazar21/mdx-extended-loader/commit/84f226f24c24dd9fdb50b4bc9421beb654bb7184))
+* **travis:** fixed codecov.io submit in test stage ([4fa82fd](https://github.com/saschazar21/mdx-extended-loader/commit/4fa82fd3ecdb03c11087731c470ecf0bd1f633ab))
+
 ## [1.0.1](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.0...v1.0.1) (2019-12-20)
 
 
