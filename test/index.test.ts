@@ -1,5 +1,5 @@
 import MDXLayoutLoaderOptions from '../src/interfaces/options';
-import { parseDateAndTitle } from '../src/parseFilename';
+import parseDateAndTitle from '../src/parser';
 import compiler from './loader';
 
 const options: MDXLayoutLoaderOptions = {
@@ -29,6 +29,17 @@ describe('MDX Extended Loader', () => {
 
     expect(errors.length).toEqual(0);
     expect(regex.test(file)).toBeTruthy();
+  });
+
+  it('wraps when filename parsing is disabled', async () => {
+    const [stats, file] = await compiler('pages/blog/blog-post.mdx', {
+      ...options,
+      parseFilename: false,
+      useDefault: false
+    });
+
+    const { errors } = stats.toJson();
+    expect(errors.length).toEqual(0);
   });
 
   it('parses filename correctly', () => {

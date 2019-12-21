@@ -62,5 +62,11 @@ export default [
         globals
       }
     ]
+  },
+  {
+    ...config,
+    input: 'src/parser.ts',
+    plugins: [...config.plugins, terser()],
+    output: [{ file: 'parser.js', format: 'cjs', globals }]
   }
 ];

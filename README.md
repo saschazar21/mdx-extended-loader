@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/saschazar21/mdx-extended-loader.svg?branch=master)](https://travis-ci.com/saschazar21/mdx-extended-loader) [![npm version](https://badge.fury.io/js/%40saschazar%2Fmdx-extended-loader.png)](https://badge.fury.io/js/%40saschazar%2Fmdx-extended-loader)
+[![Build Status](https://travis-ci.com/saschazar21/mdx-extended-loader.svg?branch=master)](https://travis-ci.com/saschazar21/mdx-extended-loader) [![npm version](https://badge.fury.io/js/%40saschazar%2Fmdx-extended-loader.png)](https://badge.fury.io/js/%40saschazar%2Fmdx-extended-loader) [![codecov](https://codecov.io/gh/saschazar21/mdx-extended-loader/branch/master/graph/badge.svg)](https://codecov.io/gh/saschazar21/mdx-extended-loader)
 
 # 📦 MDX extended loader
 

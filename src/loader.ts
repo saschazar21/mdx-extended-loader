@@ -69,9 +69,14 @@ export default async function MDXExtendedLoader(
     }
   }
 
-  // whenever useDefault has been explicitely turned off and no layout was set in the Frontmatter, return without further processing
+  // whenever useDefault has been explicitely turned off and no layout was set in the Frontmatter, render immediately without further processing
   if (!useDefault && !frontmatter.layout) {
-    return callback(null, content, map);
+    try {
+      const rendered = await render.call(this, content, options);
+      return callback(null, rendered, map);
+    } catch (e) {
+      return callback(e);
+    }
   }
 
   // otherwise try to fetch information for the desired layout in the glob results

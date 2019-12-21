@@ -1,5 +1,6 @@
 !index.js
 !index.min.js
+!parser.js
 
 .cache/
 coverage/

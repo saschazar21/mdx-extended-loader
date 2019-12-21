@@ -1,5 +1,6 @@
 index.js
 index.min.js
+parser.js
 types
 
 # Created by https://www.gitignore.io/api/node,code
