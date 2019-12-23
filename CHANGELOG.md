@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.2...v1.0.3) (2019-12-23)
+
+
+### Bug Fixes
+
+* **types:** moved types to root directory ([5ea4381](https://github.com/saschazar21/mdx-extended-loader/commit/5ea438144e0adf200acd4752ebc4cfd34ce6880c))
+
 ## [1.0.2](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.1...v1.0.2) (2019-12-21)
 
 
