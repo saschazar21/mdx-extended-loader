@@ -16,7 +16,7 @@ export interface ParsedData extends ParsedFilenameData {
 export default function parseFilename(this: loader.LoaderContext): ParsedData {
   const extension = extname(this.resourcePath);
   const current = basename(this.resourcePath, extension);
-  const { date, title } = parseDateAndTitle(current);
+  const { date, ...other } = parseDateAndTitle(current);
 
   const parsedDate = Date.parse(date);
 
@@ -25,10 +25,9 @@ export default function parseFilename(this: loader.LoaderContext): ParsedData {
     throw new Error(`Date format is invalid: ${date}`);
   }
 
-  return {
-    __filename: title,
-    __url: relative(process.cwd(), join(dirname(this.resourcePath), title)),
+  return Object.assign({}, other, {
+    __filename: basename(this.resourcePath),
+    __url: relative(process.cwd(), this.resourcePath),
     date,
-    title,
-  };
+  });
 }
