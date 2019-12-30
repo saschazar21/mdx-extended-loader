@@ -4,7 +4,7 @@ import compiler from './loader';
 
 const options: MDXLayoutLoaderOptions = {
   extensions: ['tsx', 'ts'],
-  layoutsDir: 'test/layouts'
+  layoutsDir: 'test/layouts',
 };
 
 describe('MDX Extended Loader', () => {
@@ -23,7 +23,7 @@ describe('MDX Extended Loader', () => {
     const regex = /CUSTOM_TEMPLATE_MARKER/;
     const [stats, file] = await compiler(
       'pages/blog/custom-blog-post.mdx',
-      options
+      options,
     );
     const { errors } = stats.toJson();
 
@@ -35,7 +35,7 @@ describe('MDX Extended Loader', () => {
     const [stats, file] = await compiler('pages/blog/blog-post.mdx', {
       ...options,
       parseFilename: false,
-      useDefault: false
+      useDefault: false,
     });
 
     const { errors } = stats.toJson();
@@ -48,7 +48,7 @@ describe('MDX Extended Loader', () => {
     const { date, title } = parseDateAndTitle(filename);
 
     expect(date).toEqual('2019-12-20');
-    expect(title).toEqual('a-title');
+    expect(title).toEqual('A Title');
   });
 
   it('parses filename without suffix correctly', () => {
@@ -56,7 +56,7 @@ describe('MDX Extended Loader', () => {
 
     const { title } = parseDateAndTitle(filename);
 
-    expect(title).toEqual('a-title');
+    expect(title).toEqual('A Title');
   });
 
   it('fails parsing a filename with invalid date', () => {

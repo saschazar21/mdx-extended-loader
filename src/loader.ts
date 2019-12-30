@@ -35,7 +35,7 @@ ${content}
 export default async function MDXExtendedLoader(
   this: loader.LoaderContext,
   content: string,
-  map?: any
+  map?: any,
 ): Promise<void> {
   const debug = isDebug.call(this);
   const callback = this.async() as loader.loaderCallback;
@@ -56,13 +56,7 @@ export default async function MDXExtendedLoader(
       Object.assign(parsed, p);
 
       if (debug) {
-        console.log(
-          'Parsed',
-          this.resourcePath,
-          'to',
-          p.date.toISOString(),
-          p.__url
-        );
+        console.log('Parsed', this.resourcePath, 'to', p.date, p.__url);
       }
     } catch (e) {
       this.emitWarning(e);
@@ -89,8 +83,8 @@ export default async function MDXExtendedLoader(
           frontmatter.layout
             ? `Layout '${frontmatter.layout}'`
             : 'Default layout'
-        } not found!`
-      )
+        } not found!`,
+      ),
     );
   }
 
@@ -99,7 +93,7 @@ export default async function MDXExtendedLoader(
       'Using layout',
       layoutPath,
       'for',
-      relative(process.cwd(), this.resourcePath)
+      relative(process.cwd(), this.resourcePath),
     );
   }
 
@@ -119,7 +113,7 @@ export default async function MDXExtendedLoader(
     const renderedContent = await render.call(
       this,
       wrappedContent,
-      Object.assign({}, filepath && { filepath }, options)
+      Object.assign({}, filepath && { filepath }, options),
     );
 
     return callback(null, renderedContent, map);
