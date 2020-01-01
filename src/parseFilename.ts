@@ -1,14 +1,11 @@
-import { capitalCase } from 'capital-case';
 import { basename, dirname, extname, join, relative } from 'path';
 import { loader } from 'webpack';
 
-import parseDateAndTitle from 'parser';
+import parseDateAndTitle, { ParsedFilenameData } from 'parser';
 
-export interface ParsedData {
+export interface ParsedData extends ParsedFilenameData {
   __filename: string;
   __url: string;
-  date: Date;
-  title: string;
 }
 
 /**
@@ -19,19 +16,18 @@ export interface ParsedData {
 export default function parseFilename(this: loader.LoaderContext): ParsedData {
   const extension = extname(this.resourcePath);
   const current = basename(this.resourcePath, extension);
-  const { date: parsedDate, title } = parseDateAndTitle(current);
+  const { date, ...other } = parseDateAndTitle(current);
 
-  const date = Date.parse(parsedDate);
+  const parsedDate = Date.parse(date);
 
   // Throw an error, when the date is in an invalid format
-  if (!date) {
-    throw new Error(`Date format is invalid: ${parsedDate}`);
+  if (isNaN(parsedDate)) {
+    throw new Error(`Date format is invalid: ${date}`);
   }
 
-  return {
-    __filename: title,
-    __url: relative(process.cwd(), join(dirname(this.resourcePath), title)),
-    date: new Date(date),
-    title: capitalCase(title)
-  };
+  return Object.assign({}, other, {
+    __filename: basename(this.resourcePath),
+    __url: relative(process.cwd(), this.resourcePath),
+    date,
+  });
 }
