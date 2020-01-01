@@ -32,7 +32,7 @@ describe('MDX Extended Loader', () => {
   });
 
   it('wraps when filename parsing is disabled', async () => {
-    const [stats, file] = await compiler('pages/blog/blog-post.mdx', {
+    const [stats] = await compiler('pages/blog/blog-post.mdx', {
       ...options,
       parseFilename: false,
       useDefault: false,
