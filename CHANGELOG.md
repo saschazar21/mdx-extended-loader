@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.4...v1.1.0) (2020-01-08)
+
+
+### Features
+
+* **parseExports:** added functionality to re-export exports from layout ([60febc7](https://github.com/saschazar21/mdx-extended-loader/commit/60febc7a31008c52a8dde09e45f4a47097937782))
+
 ## [1.0.4](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.3...v1.0.4) (2020-01-01)
 
 
