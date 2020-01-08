@@ -1,26 +1,57 @@
 import { getOptions } from 'loader-utils';
 import matter from 'gray-matter';
-import { extname, relative } from 'path';
+import { dirname, extname, join, relative } from 'path';
 import { loader } from 'webpack';
 
 import MDXLayoutLoaderOptions from 'interfaces/options';
 import isDebug from 'helpers/isDebug';
+import parseExports from 'helpers/parseExports';
 import globLayouts from 'globLayouts';
 import parseFilename, { ParsedData } from 'parseFilename';
 import render from 'render';
 
 /**
  * Wraps the content in a React component layout, together with the Frontmatter data as props.
+ * Also re-exports all the available export declarations from the layout file.
  *
  * @param matter - the parsed frontmatter object
  * @param content - the string representation of the Markdown content (without frontmatter)
  * @param layoutPath - the file path to the layout file, relative to the source file
+ * @param resourcePath - the file path to the currently transpiled Markdown/MDX file
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function wrapContent(props: any, content: string, layoutPath: string): string {
+async function wrapContent(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props: any,
+  content: string,
+  layoutPath: string,
+  resourcePath: string
+): Promise<string> {
+  let exported = [] as string[];
+
+  // get absolute layout path (to require below)
+  const absoluteLayoutPath = join(dirname(resourcePath), layoutPath);
+
+  try {
+    // filter the exports from the source layout file
+    exported = (await parseExports(absoluteLayoutPath)) as string[];
+  } catch (e) {
+    console.error(
+      'An error occurred while filtering exports from layout:',
+      layoutPath,
+      '\n',
+      e.message || e
+    );
+  }
+
   return `
-import Layout from './${layoutPath}';
+import Layout from '${absoluteLayoutPath}';
 const props = ${JSON.stringify(props)};
+
+${
+  exported.length > 0
+    ? `export { ${exported.join(', ')} } from '${absoluteLayoutPath}';\n`
+    : ''
+}
 export default ({ children }) => Layout(Object.assign({}, props, { children }));
 
 ${content}
@@ -39,7 +70,7 @@ export default async function MDXExtendedLoader(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   map?: any
 ): Promise<void> {
-  const debug = isDebug.call(this);
+  const debug = isDebug();
   const callback = this.async() as loader.loaderCallback;
   const options = getOptions(this) as MDXLayoutLoaderOptions;
   const layouts = await globLayouts.call(this, options);
@@ -105,7 +136,12 @@ export default async function MDXExtendedLoader(
   debug && console.log(JSON.stringify(props));
 
   // if the desired layout has been successfully found, wrap the contents in the layout
-  const wrappedContent = wrapContent(props, markdown, layoutPath);
+  const wrappedContent = await wrapContent(
+    props,
+    markdown,
+    layoutPath,
+    this.resourcePath
+  );
   debug && console.log(wrappedContent);
 
   try {
