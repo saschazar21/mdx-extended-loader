@@ -16,6 +16,7 @@ import render from 'render';
  * @param content - the string representation of the Markdown content (without frontmatter)
  * @param layoutPath - the file path to the layout file, relative to the source file
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function wrapContent(props: any, content: string, layoutPath: string): string {
   return `
 import Layout from './${layoutPath}';
@@ -35,7 +36,8 @@ ${content}
 export default async function MDXExtendedLoader(
   this: loader.LoaderContext,
   content: string,
-  map?: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  map?: any
 ): Promise<void> {
   const debug = isDebug.call(this);
   const callback = this.async() as loader.loaderCallback;
@@ -83,8 +85,8 @@ export default async function MDXExtendedLoader(
           frontmatter.layout
             ? `Layout '${frontmatter.layout}'`
             : 'Default layout'
-        } not found!`,
-      ),
+        } not found!`
+      )
     );
   }
 
@@ -93,11 +95,12 @@ export default async function MDXExtendedLoader(
       'Using layout',
       layoutPath,
       'for',
-      relative(process.cwd(), this.resourcePath),
+      relative(process.cwd(), this.resourcePath)
     );
   }
 
   // assemble props from parsing information and frontmatter
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const props: any = { ...parsed, ...frontmatter };
   debug && console.log(JSON.stringify(props));
 
@@ -113,7 +116,7 @@ export default async function MDXExtendedLoader(
     const renderedContent = await render.call(
       this,
       wrappedContent,
-      Object.assign({}, filepath && { filepath }, options),
+      Object.assign({}, filepath && { filepath }, options)
     );
 
     return callback(null, renderedContent, map);
