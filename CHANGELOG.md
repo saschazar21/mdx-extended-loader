@@ -1,3 +1,18 @@
+## [1.0.4](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.3...v1.0.4) (2020-01-01)
+
+
+### Bug Fixes
+
+* **parseFilename:** fixed parsed result object ([8a8ed96](https://github.com/saschazar21/mdx-extended-loader/commit/8a8ed965be4678c8ef381e6fe57e23d822939b7a))
+* **parser:** fixed transforming title to capital case ([f656a8d](https://github.com/saschazar21/mdx-extended-loader/commit/f656a8d0948cd327ecc0417074db43507628529e))
+
+## [1.0.3](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.2...v1.0.3) (2019-12-23)
+
+
+### Bug Fixes
+
+* **types:** moved types to root directory ([5ea4381](https://github.com/saschazar21/mdx-extended-loader/commit/5ea438144e0adf200acd4752ebc4cfd34ce6880c))
+
 ## [1.0.2](https://github.com/saschazar21/mdx-extended-loader/compare/v1.0.1...v1.0.2) (2019-12-21)
 
 
