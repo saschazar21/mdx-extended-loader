@@ -1,7 +1,7 @@
 import babel from 'rollup-plugin-babel';
 import builtinModules from 'builtin-modules';
-import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import transformPaths from '@zerollup/ts-transform-paths';
 import typescript from 'rollup-plugin-typescript2';
