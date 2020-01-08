@@ -21,7 +21,7 @@ export default async function render(
   content: string,
   options?: Options
 ): Promise<string> {
-  const debug = isDebug.call(this);
+  const debug = isDebug();
   const opts = { filepath: this.resourcePath, ...options };
   const result = await mdx(content, opts);
 

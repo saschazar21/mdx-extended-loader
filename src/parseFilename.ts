@@ -1,4 +1,4 @@
-import { basename, dirname, extname, join, relative } from 'path';
+import { basename, extname, relative } from 'path';
 import { loader } from 'webpack';
 
 import parseDateAndTitle, { ParsedFilenameData } from 'parser';
@@ -28,6 +28,6 @@ export default function parseFilename(this: loader.LoaderContext): ParsedData {
   return Object.assign({}, other, {
     __filename: basename(this.resourcePath),
     __url: relative(process.cwd(), this.resourcePath),
-    date,
+    date
   });
 }

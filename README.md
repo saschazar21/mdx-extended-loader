@@ -129,4 +129,4 @@ So I decided to split it into a Webpack-only loader, together with a filename pa
 
 Licensed under the MIT license.
 
-Copyright ©️ 2019 [Sascha Zarhuber](https://github.com/saschazar21)
+Copyright ©️ 2019 - 2020 [Sascha Zarhuber](https://github.com/saschazar21)
